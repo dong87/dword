@@ -16,6 +16,13 @@ knitr::opts_chunk$set(
 )
 ```
 
+
+## install depended packages
+
+```{r}
+install.packages("tidyverse", "stringi", "koRpus", "wordcloud2", "quanteda", "htmlwidgets")
+```
+
 ## create folders
 
 ```{r}

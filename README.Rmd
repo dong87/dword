@@ -27,6 +27,12 @@ date: "`r Sys.Date()`"
 devtools::install_github("dong87/dword")
 ```
 
+## install depended packages
+
+```{r}
+install.packages("tidyverse", "stringi", "koRpus", "wordcloud2", "quanteda", "htmlwidgets")
+```
+
 ---
 
 1. Firstly, let me assume you're a academic researcher. You read a lot of papers in every single day. The papers are `PDF` format and are managed in [Mendeley](https://www.mendeley.com/). Mendeley was configured as:
