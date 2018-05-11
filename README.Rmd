@@ -1,5 +1,7 @@
 # dword
 
+> This package is designed for those people who often search some special words/concepts/informations within a huge pile of references, and get the responding sentences/papers/origins. Or if you're not a native English users, you want to know how to use a word or a word's usage frequence.
+
 `{dword}` can
 
 - extract sentences with your keywords from a local database.
@@ -13,3 +15,20 @@
 
 
 ![](./img/dword.png)
+## Install
+
+```{r, eval = FALSE}
+devtools::install_github("dong87/dword")
+```
+
+---
+
+1. Firstly, let me assume you're a academic researcher. You read a lot of papers in every single day. The papers are `PDF` format and are managed in [Mendeley](https://www.mendeley.com/). Mendeley was configured as:
+
+![](./img/mendeley.png)
+
+2. You'd better to transfer those PDFs to `TXT` to facilitate `R` operation. The tool to be used is [pdftotxt](https://www.xpdfreader.com/download.html) which is built-in in `exe` folder, alternatively you can download it from the website and replace in the local package library. This transference will be implemented automatically with the function I've written.
+
+3. The TXTs we got in the last step will be slipted to single sentences, the elements of the databese what we need.
+
+4. Finally, we can do extracting-realated jobs! Enjoy it!
