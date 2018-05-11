@@ -14,7 +14,7 @@ word_freq <- function(txt, filepath= "word_freq.csv", stop_word=NULL) {
   len_txt <- length(txt)
   if (len_txt < 5000) {
     elapsed_time <- system.time({
-      txts <- lapply(txt[sample_id], function(i) {
+      txts <- lapply(txt, function(i) {
         quanteda::tokens(i, what = "word", remove_numbers = T,
                          remove_punct = T, remove_symbols = T)
       }) %>% lapply(., as.character) %>% unlist %>% tolower %>% .[nchar(.)>2] %>% .[nchar(.)<25] %>%

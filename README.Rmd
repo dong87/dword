@@ -1,3 +1,9 @@
+---
+title: "dword: word&sentence extraction"
+author: "Dong Leiming"
+date: "`r Sys.Date()`"
+---
+
 # dword
 
 > This package is designed for those people who often search some special words/concepts/informations within a huge pile of references, and get the responding sentences/papers/origins. Or if you're not a native English users, you want to know how to use a word or a word's usage frequence.

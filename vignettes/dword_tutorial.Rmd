@@ -42,29 +42,33 @@ pdf_2_txt(filenames, pdf2text_path)
 
 ```{r}
 db_sci <- list(dest = "PATH/Mendeley_PDF/", myfiles = NULL, sents = NULL) # build a empty list comprising 3 elements. Assign path of the files saved by mendeley 
-db_sci$myfiles <- all_pdf("D:/R/Mendeley_PDF/") # save all the pdf file names in this element
-db_sci$sents <- db_txt(dest = db_sci$dest) %>% db_sent # processing the txt transfered from pdf files and spliting into single sentences
+db_sci$myfiles <- db_sci$dest %>% all_pdf # save all the pdf file names in this element
+
+# pdf 2 txt
+pdf2text_path <- "D:/R/Practise/dword/exe/pdftotext.exe"
+pdf_2_txt(db_sci$myfiles, pdf2text_path)
+
+db_sci$sents <- db_sci$dest %>% db_txt %>% db_sent # processing the txt transfered from pdf files and spliting into single sentences
 db_sci$sents <- db_sci$sents %>% gsub("`", "'", .) %>% gsub(" {2,10}", " ", .) %>% gsub("\\[|\\]|#", "", .) # repalce some special char and usless content
-save(db_sci, file = "./data/db_sci.rdata") # save database to local
+save(db_sci, file = "PATH/db_sci.rdata") # save database to local
 ```
 
 ## extract sentences /w 3 examples
 
 ```{r}
 ### 尾部随机
-word <- "SEM"; nf <- dsents(words = paste0("\\b", word, "\\w*"), sents = db_sci$sents, output = word, rm_pattern = "")
-### 词尾相同+替换
-word <- "(W|w)ood density"; nf <- dsents(words = paste0("\\w*", word), sents = db_sci$sents, output = "wood density", 
-                                  rm_pattern = word)
-### 邻接词随机+替换
-word <- "as described in"; nf <- dsents(words = paste0(word, " \\w*ed"), sents = db_sci$sents, output = word, 
+word <- "facilit"; nf <- dsents(words = paste0("\\b", word, "\\w*"), sents = db_sci$sents, output = word, rm_pattern = "")
+### 后词固定+替换
+word <- "estimates"; nf <- dsents(words = paste0("\\w*", word), sents = db_sci$sents, output = word, rm_pattern = word)
+### 前词固定+替换
+word <- "highly"; nf <- dsents(words = paste0(word, " \\w*ed"), sents = db_sci$sents, output = word, 
   rm_pattern = paste0(word, " "))
 ```
 
 ## extract word
 
 ```{r}
-txts <- dwords(db_sci$sents,"outname")
+txts <- dwords(db_sci$sents, path_TreeTagger="PATH/TreeTagger", "outname")
 ```
 
 ## word frequency

@@ -1,6 +1,6 @@
-lemma_word <- function(word) {
+lemma_word <- function(word, path_TreeTagger) {
   treetag(file = word, treetagger = "manual", format = "obj", TT.tknz = FALSE,
-          lang = "en", debug = TRUE, TT.options = list(path = "./exe/TreeTagger", preset = "en"))
+          lang = "en", debug = TRUE, TT.options = list(path = path_TreeTagger, preset = "en"))
 }
 
 
@@ -13,13 +13,15 @@ word_tag <- function(txt, tag_list) {
 #' Extract words according to Noun, Verb, Adjective and Adverb.
 #'
 #' @param txt A destination that contains txt files.
+#' @param path_TreeTagger Path of TreeTagger, TreeTagger is used to lemma words.
 #' @param savename Save name
+#'
 #'
 #' @return
 #' @export
 #'
 #' @examples
-dwords <- function(txt, savename = "result") {
+dwords <- function(txt, path_TreeTagger, savename = "result") {
   tag <- list(N = c("NN", "NNS"), ADJ = c("JJ", "JJR", "JJS"), ADV = c("RB", "RBR",
                                                                        "RBS"), V = c("VV", "VVD", "VVG", "VVN", "VVP", "VVZ"))
   txt <- lapply(txt, function(i) {
@@ -29,7 +31,7 @@ dwords <- function(txt, savename = "result") {
                                                                             "", .)
   msg(cli::rule(center = crayon::bold("Lemmatization now, plz waiting for a while!")),
       startup = TRUE)
-  lem_txt <- lemma_word(txt) %>% as.data.frame
+  lem_txt <- lemma_word(txt, path_TreeTagger) %>% as.data.frame
   word <- lapply(tag, function(i) {
     word_tag(lem_txt, i)
   })
