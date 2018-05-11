@@ -16,6 +16,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+## create folders
+
+```{r}
+gen_dir()
+```
+
 ## Mendeley setting
 
 You'd better to set your Mendelely following this image.
@@ -27,7 +33,7 @@ Mendelely will correct you files automatically.
 ## Transfer pdfs to plain txt
 
 ```{r}
-filenames <- "D:/R/Mendeley_PDF/Nature Genetics/filename.pdf"
+filenames <- "D:/R/Mendeley_PDF/Nature Genetics/FILENAME.pdf"
 pdf2text_path <- "PATH/pdftotext.exe" ## space in the path is not allowed
 pdf_2_txt(filenames, pdf2text_path)
 ```
@@ -39,7 +45,7 @@ db_sci <- list(dest = "PATH/Mendeley_PDF/", myfiles = NULL, sents = NULL) # buil
 db_sci$myfiles <- all_pdf("D:/R/Mendeley_PDF/") # save all the pdf file names in this element
 db_sci$sents <- db_txt(dest = db_sci$dest) %>% db_sent # processing the txt transfered from pdf files and spliting into single sentences
 db_sci$sents <- db_sci$sents %>% gsub("`", "'", .) %>% gsub(" {2,10}", " ", .) %>% gsub("\\[|\\]|#", "", .) # repalce some special char and usless content
-save(db_sci, file = "./data/db_sci_2018May04.rdata") # save database to local
+save(db_sci, file = "./data/db_sci.rdata") # save database to local
 ```
 
 ## extract sentences /w 3 examples
