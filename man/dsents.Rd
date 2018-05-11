@@ -20,3 +20,14 @@ dsents(words, sents, save_find = T, output = "output", rm_pattern = "")
 \description{
 Extract sentences accoding a keyword or a pattern (regular expression)
 }
+\examples{
+gen_dir() # creat folders
+data(demo)
+#' ### single word with a variable tail
+word <- "facilit"; nf <- dsents(words = paste0("\\\\b", word, "\\\\w*"), sents = db_sci$sents, output = word, rm_pattern = "")
+### 后词固定+替换
+word <- "estimates"; nf <- dsents(words = paste0("\\\\w*", word), sents = db_sci$sents, output = word, rm_pattern = word)
+### 前词固定+替换
+word <- "highly"; nf <- dsents(words = paste0(word, " \\\\w*ed"), sents = db_sci$sents, output = word,
+                              rm_pattern = paste0(word, " "))
+}

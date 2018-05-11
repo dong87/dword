@@ -8,6 +8,9 @@
 #' @export
 #'
 #' @examples
+#' gen_dir() # creat folders
+#' data(demo)
+#' word_freq(db_sci$sents, filepath = "PATH/word_freq.csv")
 word_freq <- function(txt, filepath= "word_freq.csv", stop_word=NULL) {
   txt <- txt
   stop_w <- stop_word

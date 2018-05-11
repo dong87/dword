@@ -16,3 +16,8 @@ dwords(txt, path_TreeTagger, savename = "result")
 \description{
 Extract words according to Noun, Verb, Adjective and Adverb.
 }
+\examples{
+gen_dir() # creat folders
+data(demo)
+txts <- dwords(db_sci$sents, path_TreeTagger="PATH/TreeTagger", "outname")
+}

@@ -16,3 +16,8 @@ word_freq(txt, filepath = "word_freq.csv", stop_word = NULL)
 \description{
 Get word's frequency from a txt object
 }
+\examples{
+gen_dir() # creat folders
+data(demo)
+word_freq(db_sci$sents, filepath = "PATH/word_freq.csv")
+}

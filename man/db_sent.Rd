@@ -16,3 +16,9 @@ db_sent(txt = txt, minL = 50, maxL = 800)
 \description{
 Sliping sentences from txt object.
 }
+\examples{
+db_sci <- list(dest = "PATH/Mendeley_PDF/", myfiles = NULL, sents = NULL) # build a empty list comprising 3 elements. Assign path of the files saved by mendeley
+db_sci$myfiles <- db_sci$dest \%>\% all_pdf # save all the pdf file names in this element
+pdf_2_txt(db_sci$myfiles, pdf2text_path="PATH/pdftotext.exe") # pdf 2 txt
+db_sci$sents <- db_sci$dest \%>\% db_txt \%>\% db_sent # processing the txt transfered from pdf files and spliting into single sentences
+}

@@ -21,6 +21,9 @@ word_tag <- function(txt, tag_list) {
 #' @export
 #'
 #' @examples
+#' gen_dir() # creat folders
+#' data(demo)
+#' txts <- dwords(db_sci$sents, path_TreeTagger="PATH/TreeTagger", "outname")
 dwords <- function(txt, path_TreeTagger, savename = "result") {
   tag <- list(N = c("NN", "NNS"), ADJ = c("JJ", "JJR", "JJS"), ADV = c("RB", "RBR",
                                                                        "RBS"), V = c("VV", "VVD", "VVG", "VVN", "VVP", "VVZ"))
