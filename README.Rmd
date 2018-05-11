@@ -1,17 +1,10 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+title: "README"
+author: "Dong Leiming"
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # dword
@@ -24,7 +17,7 @@ knitr::opts_chunk$set(
 
 - paint word cloud.
 
-...
+- ...
 
 
 
