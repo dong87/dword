@@ -35,7 +35,7 @@ You'd better to set your Mendelely following this image.
 
 ![](../img/mendeley.png)
 
-Mendelely will correct you files automatically.
+Mendelely will correct you file names automatically.
 
 ## Transfer pdfs to plain txt
 
