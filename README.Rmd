@@ -47,7 +47,7 @@ install.packages("tidyverse", "stringi", "koRpus", "wordcloud2", "quanteda", "ht
 
 ## Tutorial 
 
-https://github.com/dong87/dword/wiki
+[https://github.com/dong87/dword/wiki](https://github.com/dong87/dword/wiki)
 
 ## Feedbacks and enhancement
 
