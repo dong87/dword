@@ -67,6 +67,8 @@ word <- "highly"; nf <- dsents(words = paste0(word, " \\w*ed"), sents = db_sci$s
 
 ## extract word
 
+If you'd like to use this function, you have to download [TreeTagger](http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-windows-3.2.1.zip) first, released into a folder without space.
+
 ```{r}
 txts <- dwords(db_sci$sents, path_TreeTagger="PATH/TreeTagger", "outname")
 ```

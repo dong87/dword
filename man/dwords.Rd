@@ -4,10 +4,12 @@
 \alias{dwords}
 \title{Extract words according to Noun, Verb, Adjective and Adverb.}
 \usage{
-dwords(txt, savename = "result")
+dwords(txt, path_TreeTagger, savename = "result")
 }
 \arguments{
 \item{txt}{A destination that contains txt files.}
+
+\item{path_TreeTagger}{Path of TreeTagger, TreeTagger is used to lemma words.}
 
 \item{savename}{Save name}
 }
