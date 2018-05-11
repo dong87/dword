@@ -23,20 +23,20 @@ dsents0 <- function(namesToExtract, sents = sents, save_find = save_find, output
     namesfound <- namesFound %>% tolower %>% unique %>% stringr::str_sort()
     # add a title for the output file
 
-    sink(paste0("./result/", output, ".txt"))
+    sink(paste0("./output/", output, ".txt"))
     cat("---\n", "title: ", output, "\n", "date: ", paste(Sys.time()), "\n",
         "total numbers: ", length(sentList), "\n", "---\n", sep = "")
     sink()
     if (save_find == T)
-      write.table(namesfound, file = paste0("./result/", output, ".txt"), col.names = F,
+      write.table(namesfound, file = paste0("./output/", output, ".txt"), col.names = F,
                   row.names = F, quote = F, append = T)
-    write.table(sentList, file = paste0("./result/", output, ".txt"), col.names = F,
+    write.table(sentList, file = paste0("./output/", output, ".txt"), col.names = F,
                 row.names = F, quote = F, append = T)
   })
   msg(cli::rule(center = paste0(crayon::bold("Number "), crayon::red(length(sentList)),
                                 " --- ", crayon::bold("Time "), crayon::green(round(elapsed_time[3], 2),
                                                                               "s"))), startup = TRUE)
-  file.show(paste0("./result/", output, ".txt"))
+  file.show(paste0("./output/", output, ".txt"))
 
   namesfound <- namesFound %>% tolower %>% gsub(rm_pattern, "", .) %>% table %>%
     as.data.frame %>% `colnames<-`(c("Word", "freq")) %>% arrange(desc(freq))
