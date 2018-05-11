@@ -1,12 +1,3 @@
----
-title: "README"
-author: "Dong Leiming"
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # dword
 
 `{dword}` can
