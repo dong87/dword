@@ -27,7 +27,7 @@ devtools::install_github("dong87/dword")
 
 ![](./img/mendeley.png)
 
-2. You'd better to transfer those PDFs to `TXT` to facilitate `R` operation. The tool to be used is [pdftotxt](https://www.xpdfreader.com/download.html) which is built-in in `exe` folder, alternatively you can download it from the website and replace in the local package library. This transference will be implemented automatically with the function I've written.
+2. You'd better to transfer those PDFs to `TXT` to facilitate `R` operation. The tool to be used is [pdftotxt](https://github.com/dong87/dword/blob/master/exe/pdftotext.exe) . You must download it from the link to a direction on you computer. **Note:** Space is NOT allowned in the direction. This transference will be implemented automatically with the function I've written.
 
 3. The TXTs we got in the last step will be slipted to single sentences, the elements of the databese what we need.
 
