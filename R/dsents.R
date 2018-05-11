@@ -20,12 +20,22 @@ dsents0 <- function(namesToExtract, sents = sents, save_find = save_find, output
     }
     # add '- ' ahead each sent
     sentList <- unlist(lapply(sentList2, function(i) paste0("- ", i)))
+    refer_split <- sentList %>% strsplit("\\(")
+    refer <- NULL
+    for (i in 1:length(refer_split)) {
+      refer[i] <- refer_split[[i]][length(refer_split[[i]])]
+    }
+    refer <- refer %>% unique %>% gsub("\\)", "", .) #%>% as.data.frame
     namesfound <- namesFound %>% tolower %>% unique %>% stringr::str_sort()
-    # add a title for the output file
 
+    # add a title for the output file
     sink(paste0("./output/", output, ".txt"))
-    cat("---\n", "title: ", output, "\n", "date: ", paste(Sys.time()), "\n",
-        "total numbers: ", length(sentList), "\n", "---\n", sep = "")
+    cat("---\n",
+        "title: ", output, "\n",
+        "date: ", paste(Sys.time()), "\n",
+        "NO_sents: ", length(sentList), "\n",
+        "NO_references: ", length(refer), "\n",
+        "---\n", sep = "")
     sink()
     if (save_find == T)
       write.table(namesfound, file = paste0("./output/", output, ".txt"), col.names = F,
