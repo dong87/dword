@@ -32,3 +32,7 @@ devtools::install_github("dong87/dword")
 3. The TXTs we got in the last step will be slipted to single sentences, the elements of the databese what we need.
 
 4. Finally, we can do extracting-realated jobs! Enjoy it!
+
+## Feedbacks and enhancement
+
+You've found a bug, or have an enhancment idea? Feel free to open an issue : [https://github.com/dong87/dword/issues](https://github.com/dong87/dword/issues). 
