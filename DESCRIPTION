@@ -1,6 +1,6 @@
 Package: dword
 Title: Extract words or sentences
-Version: 17.11-17
+Version: 18.05-17
 Author: Leiming Dong, <email = "dongleiming2008@gmail.com", role = c("cre")>
 Description: Extract words by part of speech & extract sentences with desirable words.
 Imports:
@@ -9,7 +9,8 @@ Imports:
     quanteda,
     stringi,
     wordcloud2,
-    htmlwidgets
+    htmlwidgets,
+	rvest
 License: GPL
 Encoding: UTF-8
 LazyData: true

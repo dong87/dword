@@ -1,34 +1,36 @@
 dsents0 <- function(namesToExtract, sents = sents, save_find = save_find, output = output,
                     rm_pattern = rm_pattern) {
+  options(warn=-1)
   # surporting regular formular index reflecting target sents were found or not
   elapsed_time <- system.time({
-    namesFound0 <- stringi::stri_extract_all(sents, regex = namesToExtract)
-    # when multi objects found, length of namesFound0 != that of sents and output
-    # wrong results,then:
-    namesFound <- lapply(namesFound0, "[[", 1) %>% unlist
+    namesFound <- stringr::str_extract_all(sents, regex(namesToExtract, ignore_case=TRUE)) %>%
+      map(function(i) if(identical(i, character(0))) NA else i) %>% # replace character(0) by NA
+      lapply("[[", 1) %>% unlist
     sentList <- split(sents, list(namesFound)) %>% unlist
     if (is.null(sentList))
       stop(msg(cli::rule(center = crayon::bold("Please check that the spelling is correct!")),
                startup = TRUE))
-    namesFound <- stringi::stri_extract_all(sentList, regex = namesToExtract) %>%
+    namesFound <- stringr::str_extract_all(sentList, regex(namesToExtract, ignore_case=TRUE)) %>%
+      map(function(i) if(identical(i, character(0))) NA else i) %>% # replace character(0) by NA
       lapply("[[", 1) %>% unlist
     # replace namesToExtract with quoting''
     sentList2 <- list()
     for (i in 1:length(sentList)) {
-      sentList2[[i]] <- gsub(namesFound[i], paste0("**", namesFound[i], "**"),
-                             sentList[i])
+      sentList2[[i]] <-  sentList[i] %>% str_replace_all(namesFound[i], paste0("**", namesFound[i], "**"))
     }
     # add '- ' ahead each sent
-    sentList <- unlist(lapply(sentList2, function(i) paste0("- ", i)))
-    refer_split <- sentList %>% strsplit("\\(")
+    sentList <- sentList2 %>% map(function(i) paste0("- ", i)) %>% unlist
+    # summary references
+    refer_split <- sentList %>% str_split("\\(")
     refer <- NULL
     for (i in 1:length(refer_split)) {
       refer[i] <- refer_split[[i]][length(refer_split[[i]])]
     }
-    refer <- refer %>% unique %>% gsub("\\)", "", .) #%>% as.data.frame
-    namesfound <- namesFound %>% tolower %>% unique %>% stringr::str_sort()
+    refer <- refer %>% unique %>% str_replace_all("\\)", "") #%>% as.data.frame
+    namesfound <- namesFound %>% str_to_lower %>% unique %>% str_sort
 
     # add a title for the output file
+    if(!dir.exists("output")) dir.create("output")
     sink(paste0("./output/", output, ".txt"))
     cat("---\n",
         "title: ", output, "\n",
@@ -48,7 +50,7 @@ dsents0 <- function(namesToExtract, sents = sents, save_find = save_find, output
                                                                               "s"))), startup = TRUE)
   file.show(paste0("./output/", output, ".txt"))
 
-  namesfound <- namesFound %>% tolower %>% gsub(rm_pattern, "", .) %>% table %>%
+  namesfound <- namesFound %>% str_to_lower %>% gsub(rm_pattern, "", .) %>% table %>%
     as.data.frame %>% `colnames<-`(c("Word", "freq")) %>% arrange(desc(freq))
   wcloud <- wordcloud2::wordcloud2(namesfound)
   htmlwidgets::saveWidget(wcloud, paste0(output, ".html"), selfcontained = F)

@@ -39,6 +39,7 @@ dwords <- function(txt, path_TreeTagger, savename = "result") {
     word_tag(lem_txt, i)
   })
   names(word) <- paste0(names(tag), "_", savename)
+  if (!dir.exists("./output/")) dir.create("./output/")
   out <- lapply(names(word), function(i) write.table(word[i], file = paste0("./output/",
                                                                             i, ".txt"), row.names = FALSE, col.names = FALSE, quote = F, append = T))
 }
