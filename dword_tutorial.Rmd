@@ -66,7 +66,7 @@ save(db_sci, file = "PATH/db_sci.rdata") # save database to local
 ### 尾部随机
 word <- "facilit"; nf <- dsents(words = paste0("\\b", word, "\\w*"), sents = db_sci$sents, output = word, rm_pattern = "")
 ### 后词固定+替换
-word <- "estimates"; nf <- dsents(words = paste0("\\w*", word), sents = db_sci$sents, output = word, rm_pattern = word)
+word <- "estimates"; nf <- dsents(words = paste0("\\w* ", word), sents = db_sci$sents, output = word, rm_pattern = word)
 ### 前词固定+替换
 word <- "highly"; nf <- dsents(words = paste0(word, " \\w*ed"), sents = db_sci$sents, output = word, 
   rm_pattern = paste0(word, " "))

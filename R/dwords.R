@@ -1,11 +1,12 @@
 lemma_word <- function(word, path_TreeTagger) {
+  library(koRpus.lang.en)
   treetag(file = word, treetagger = "manual", format = "obj", TT.tknz = FALSE,
           lang = "en", debug = TRUE, TT.options = list(path = path_TreeTagger, preset = "en"))
 }
 
 
 word_tag <- function(txt, tag_list) {
-  N <- filter(txt, tag %in% tag_list) %>% select(lemma) %>% arrange(lemma) %>%
+  N <- dplyr::filter(txt, tag %in% tag_list) %>% select(lemma) %>% arrange(lemma) %>%
     unique
   return(N)
 }

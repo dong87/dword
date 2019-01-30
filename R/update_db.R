@@ -6,8 +6,8 @@
 #' @export
 #'
 #' @examples
-update_db <- function(db) {
-  myfiles_new <- list.files(path = list.dirs(db$dest), pattern = "*.pdf", full.names = TRUE)
+update_db <- function(db, pdf2text_path) {
+  myfiles_new <- list.files(path = list.dirs(db$dest), pattern = "(*.pdf)|(*.PDF)", full.names = TRUE)
 
   # find new files
   myfiles <- setdiff(myfiles_new, db$myfiles)
@@ -15,7 +15,7 @@ update_db <- function(db) {
     stop("Your db is the newest!")
   # rm the files with latin myfiles <- myfiles[-grepl('\\?', myfiles)] transfer
   # pdf to txt
-  pdf_2_txt(myfiles)
+  pdf_2_txt(myfiles, pdf2text_path)
   # Sys.sleep(100)
   msg(cli::rule(center = crayon::bold("If ERROR: cannot open file..., plz wait a while & try it again!")),
       startup = TRUE)
